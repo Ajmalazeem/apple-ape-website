@@ -46,7 +46,6 @@ const mdxComponents: MDXRemoteProps["components"] = {
 export function RenderedPost({ source }: { source: string }) {
   return (
     <div className="font-body">
-      {/* @ts-expect-error — RSC compatible */}
       <MDXRemote source={source} components={mdxComponents} />
     </div>
   );

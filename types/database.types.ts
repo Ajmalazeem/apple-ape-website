@@ -1,7 +1,7 @@
 // types/database.types.ts
 // Hand-stubbed types. Regenerate with:
-//   npx supabase gen types typescript --local > types/database.types.ts
-// once your local stack is running. The shapes below match 0001_init.sql.
+//   npx supabase gen types typescript --linked > types/database.types.ts
+// once your project is linked. The shapes below match 0001_init.sql.
 
 export type Json =
   | string
@@ -44,6 +44,7 @@ export interface Database {
           title: string;
         };
         Update: Partial<Database["public"]["Tables"]["games"]["Row"]>;
+        Relationships: [];
       };
       web3_projects: {
         Row: {
@@ -67,6 +68,7 @@ export interface Database {
           title: string;
         };
         Update: Partial<Database["public"]["Tables"]["web3_projects"]["Row"]>;
+        Relationships: [];
       };
       apps: {
         Row: {
@@ -92,6 +94,7 @@ export interface Database {
           title: string;
         };
         Update: Partial<Database["public"]["Tables"]["apps"]["Row"]>;
+        Relationships: [];
       };
       team_members: {
         Row: {
@@ -110,6 +113,7 @@ export interface Database {
           role: string;
         };
         Update: Partial<Database["public"]["Tables"]["team_members"]["Row"]>;
+        Relationships: [];
       };
       job_openings: {
         Row: {
@@ -130,6 +134,7 @@ export interface Database {
           title: string;
         };
         Update: Partial<Database["public"]["Tables"]["job_openings"]["Row"]>;
+        Relationships: [];
       };
       job_applications: {
         Row: {
@@ -146,6 +151,7 @@ export interface Database {
           created_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["job_applications"]["Row"]>;
+        Relationships: [];
       };
       posts: {
         Row: {
@@ -168,6 +174,7 @@ export interface Database {
           content_mdx: string;
         };
         Update: Partial<Database["public"]["Tables"]["posts"]["Row"]>;
+        Relationships: [];
       };
       newsletter_subscribers: {
         Row: {
@@ -179,6 +186,7 @@ export interface Database {
         };
         Insert: { email: string; confirmed?: boolean; confirm_token?: string };
         Update: Partial<Database["public"]["Tables"]["newsletter_subscribers"]["Row"]>;
+        Relationships: [];
       };
       contact_submissions: {
         Row: {
@@ -198,6 +206,7 @@ export interface Database {
           ip_hash?: string | null;
         };
         Update: Partial<Database["public"]["Tables"]["contact_submissions"]["Row"]>;
+        Relationships: [];
       };
       studio_stats: {
         Row: {
@@ -209,11 +218,13 @@ export interface Database {
         };
         Insert: { key: string; label: string; value: string; display_order?: number };
         Update: Partial<Database["public"]["Tables"]["studio_stats"]["Row"]>;
+        Relationships: [];
       };
       rate_limit_buckets: {
         Row: { ip_hash: string; action: string; window_start: string; count: number };
         Insert: { ip_hash: string; action: string; window_start: string; count?: number };
         Update: Partial<{ ip_hash: string; action: string; window_start: string; count: number }>;
+        Relationships: [];
       };
     };
     Views: Record<string, never>;
@@ -230,5 +241,6 @@ export interface Database {
       };
     };
     Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
   };
 }
