@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens — sourced from design.md.
+   Values are stored as HSL triplets so Tailwind can apply opacity via /<n>. */
+@layer base {
+  :root {
+    /* Brand & accent */
+    --cohere-black: 0 0% 0%;          /* #000000 */
+    --near-black:   240 8% 10%;       /* #17171c */
+    --deep-green:   170 100% 12%;     /* #003c33 */
+    --dark-navy:    211 73% 9%;       /* #071829 */
+    --action-blue:  217 79% 47%;      /* #1863dc */
+    --coral:        13 100% 67%;      /* #ff7759 */
+    --soft-coral:   13 100% 81%;      /* #ffad9b */
+
+    /* Surfaces */
+    --canvas:       0 0% 100%;        /* #ffffff */
+    --soft-stone:   46 18% 92%;       /* #eeece7 */
+    --pale-green:   108 71% 95%;      /* #edfce9 */
+    --pale-blue:    222 100% 97%;     /* #f1f5ff */
+    --card-border:  0 0% 95%;         /* #f2f2f2 */
+
+    /* Text & rules */
+    --ink:          0 0% 13%;         /* #212121 */
+    --muted-slate:  240 7% 60%;       /* #93939f */
+    --slate:        240 10% 50%;      /* #75758a */
+    --hairline:     240 6% 86%;       /* #d9d9dd */
+    --border-light: 220 13% 91%;      /* #e5e7eb */
+
+    /* Semantic */
+    --focus-blue:   229 73% 60%;      /* #4c6ee6 */
+    --focus-violet: 287 28% 52%;      /* #9b60aa */
+    --error-red:    0 100% 35%;       /* #b30000 */
+
+    /* shadcn radius default — pill CTAs use rounded-pill directly */
+    --radius: 8px;
+  }
+
+  .dark {
+    /* DESIGN: Per assumption #2 — dark mode promotes the doc's product-band
+       colors (deep green / near-black) to the page surface, while keeping
+       text inverted. Accent hues (coral, action blue, focus) are unchanged. */
+    --canvas:       240 8% 10%;       /* #17171c — was near-black */
+    --soft-stone:   170 100% 12%;     /* deep green panels in dark mode */
+    --pale-green:   170 30% 18%;
+    --pale-blue:    211 50% 18%;
+    --card-border:  240 6% 18%;
+
+    --ink:          0 0% 95%;         /* near-white body text */
+    --muted-slate:  240 6% 60%;
+    --slate:        240 6% 70%;
+    --hairline:     240 6% 22%;
+    --border-light: 240 6% 22%;
+
+    --near-black:   0 0% 100%;        /* primary CTA inverts: white pill on dark */
+    --cohere-black: 0 0% 100%;
+  }
+
+  * { @apply border-border; }
+
+  html { @apply scroll-smooth; }
+
+  body {
+    @apply bg-canvas text-ink font-body antialiased;
+    /* DESIGN: tight tracking on the body per the doc's measured/almost-monospace cadence. */
+    letter-spacing: -0.005em;
+  }
+
+  /* Focus rings use Focus Blue per design.md semantic colors. */
+  :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    @apply outline-none ring-2 ring-focus-blue ring-offset-2 ring-offset-canvas;
+  }
+
+  /* Selection — restrained, design.md does not specify so we use ink/canvas. */
+  ::selection {
+    background-color: hsl(var(--ink));
+    color: hsl(var(--canvas));
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Mono labels — uppercase technical markers used on product/research surfaces. */
+  .label-mono {
+    @apply font-mono text-mono-label uppercase tracking-[0.02em] text-muted-slate;
+  }
+
+  /* Section vertical rhythm — doc favors generous vertical breathing room. */
+  .section {
+    @apply py-20 sm:py-28 lg:py-36;
+  }
+}
