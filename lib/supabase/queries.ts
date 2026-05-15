@@ -1,8 +1,11 @@
 // lib/supabase/queries.ts
-// Server-only typed query helpers. Each query gracefully returns an empty array
-// when Supabase is unconfigured or the table is empty, so marketing pages never 500.
+// Server-only typed query helpers for public marketing data. Uses the anon-key
+// client (no cookies) so these are safe to call from generateStaticParams,
+// sitemap generation, and static page prerendering. Each query gracefully
+// returns an empty array when Supabase is unconfigured or the table is empty,
+// so marketing pages never 500.
 import "server-only";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import type { Database } from "@/types/database.types";
 
 type Tables = Database["public"]["Tables"];
@@ -31,7 +34,7 @@ async function safeSelect<T>(fn: () => Promise<{ data: T[] | null; error: unknow
 // ----- Games -----
 export async function getFeaturedGames(limit = 3): Promise<Tables["games"]["Row"][]> {
   return safeSelect(async () => {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     return supabase
       .from("games")
       .select("*")
@@ -43,7 +46,7 @@ export async function getFeaturedGames(limit = 3): Promise<Tables["games"]["Row"
 
 export async function getAllPublishedGameSlugs(): Promise<{ slug: string; updated_at: string }[]> {
   return safeSelect(async () => {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     return supabase.from("games").select("slug, updated_at").eq("published", true);
   });
 }
@@ -51,7 +54,7 @@ export async function getAllPublishedGameSlugs(): Promise<{ slug: string; update
 export async function getGameBySlug(slug: string): Promise<Tables["games"]["Row"] | null> {
   if (!isConfigured()) return null;
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     const { data, error } = await supabase
       .from("games")
       .select("*")
@@ -71,7 +74,7 @@ export async function getGameBySlug(slug: string): Promise<Tables["games"]["Row"
 // ----- Web3 -----
 export async function getFeaturedWeb3(limit = 3): Promise<Tables["web3_projects"]["Row"][]> {
   return safeSelect(async () => {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     return supabase
       .from("web3_projects")
       .select("*")
@@ -83,7 +86,7 @@ export async function getFeaturedWeb3(limit = 3): Promise<Tables["web3_projects"
 
 export async function getAllPublishedWeb3Slugs(): Promise<{ slug: string; updated_at: string }[]> {
   return safeSelect(async () => {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     return supabase.from("web3_projects").select("slug, updated_at").eq("published", true);
   });
 }
@@ -91,7 +94,7 @@ export async function getAllPublishedWeb3Slugs(): Promise<{ slug: string; update
 // ----- Apps -----
 export async function getFeaturedApps(limit = 3): Promise<Tables["apps"]["Row"][]> {
   return safeSelect(async () => {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     return supabase
       .from("apps")
       .select("*")
@@ -104,7 +107,7 @@ export async function getFeaturedApps(limit = 3): Promise<Tables["apps"]["Row"][
 // ----- Posts -----
 export async function getLatestPosts(limit = 3): Promise<Tables["posts"]["Row"][]> {
   return safeSelect(async () => {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     return supabase
       .from("posts")
       .select("*")
@@ -116,7 +119,7 @@ export async function getLatestPosts(limit = 3): Promise<Tables["posts"]["Row"][
 
 export async function getAllPublishedPostSlugs(): Promise<{ slug: string; updated_at: string }[]> {
   return safeSelect(async () => {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     return supabase.from("posts").select("slug, updated_at").eq("published", true);
   });
 }
@@ -124,7 +127,7 @@ export async function getAllPublishedPostSlugs(): Promise<{ slug: string; update
 // ----- Studio stats -----
 export async function getStudioStats(): Promise<Tables["studio_stats"]["Row"][]> {
   return safeSelect(async () => {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     return supabase
       .from("studio_stats")
       .select("*")
