@@ -93,23 +93,23 @@ export function Hero({ eyebrow, title, body, primaryCta, secondaryCta, mediaUrl 
         </div>
         <div className="relative overflow-hidden rounded-lg bg-near-black p-6 text-canvas">
           <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-coral">
-            Studio · LIVE
+            Studio · In Build
           </span>
           <p className="mt-4 font-display text-h4 leading-tight">
-            Currently shipping 3 titles, 2 Web3 projects, and 1 consumer app.
+            Three product lines. Everything built in-house.
           </p>
           <ul className="mt-6 space-y-3 text-xs text-canvas/70">
             <li className="flex items-center justify-between gap-3">
-              <span>Apex Runners</span>
-              <span className="rounded-pill bg-canvas/10 px-2 py-0.5">v4.2 deployed</span>
+              <span>Android Games</span>
+              <span className="rounded-pill bg-canvas/10 px-2 py-0.5">In development</span>
             </li>
             <li className="flex items-center justify-between gap-3">
-              <span>Void Archers</span>
-              <span className="rounded-pill bg-canvas/10 px-2 py-0.5">live ops</span>
+              <span>Web3 dApps</span>
+              <span className="rounded-pill bg-canvas/10 px-2 py-0.5">In development</span>
             </li>
             <li className="flex items-center justify-between gap-3">
-              <span>Orchard Marketplace</span>
-              <span className="rounded-pill bg-coral/20 px-2 py-0.5 text-coral">on-chain</span>
+              <span>Consumer Apps</span>
+              <span className="rounded-pill bg-coral/20 px-2 py-0.5 text-coral">Coming soon</span>
             </li>
           </ul>
         </div>

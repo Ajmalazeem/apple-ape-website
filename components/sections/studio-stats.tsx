@@ -5,10 +5,10 @@ import type { Database } from "@/types/database.types";
 type Stat = Database["public"]["Tables"]["studio_stats"]["Row"];
 
 const FALLBACK: Array<Pick<Stat, "key" | "label" | "value">> = [
-  { key: "downloads",    label: "Total Downloads",  value: "12M+"  },
-  { key: "active_users", label: "Active Players",   value: "850K"  },
-  { key: "countries",    label: "Countries",        value: "120+"  },
-  { key: "projects",     label: "Shipped Projects", value: "24"    },
+  { key: "verticals",  label: "Product Lines",    value: "3"       },
+  { key: "ownership",  label: "Built In-House",   value: "100%"    },
+  { key: "platform",   label: "Primary Platform", value: "Android" },
+  { key: "patterns",   label: "Dark Patterns",    value: "Zero"    },
 ];
 
 export function StudioStats({ stats }: { stats: Stat[] }) {

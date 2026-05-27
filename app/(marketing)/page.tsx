@@ -17,6 +17,9 @@ import { NewsletterCta } from "@/components/sections/newsletter-cta";
 import { organizationJsonLd, jsonLdScript } from "@/lib/seo";
 
 export const metadata: Metadata = {
+  title: "AppleApe Studios — We ship what we believe in.",
+  description:
+    "A small studio building Android games, Web3 apps, and consumer utilities — concept to live ops, entirely in-house.",
   alternates: { canonical: "/" },
 };
 
@@ -47,10 +50,10 @@ export default async function HomePage() {
 
       <Hero
         eyebrow="AppleApe Studios"
-        title="We design and ship product for the next generation of play."
-        body="Android games, Web3 applications, and consumer apps — built in-house, shipped with intent."
+        title="We ship what we believe in."
+        body="Android games, Web3 applications, and consumer apps — built in-house from concept to live ops. No outsourcing, no white-labelling. If it ships under our name, we made it."
         primaryCta={{ label: "Explore our games", href: "/games" }}
-        secondaryCta={{ label: "Read whitepaper", href: "/web3" }}
+        secondaryCta={{ label: "See Web3 work", href: "/web3" }}
         mediaUrl={games[0]?.hero_image_url ?? null}
       />
 
