@@ -96,19 +96,19 @@ export function Hero({ eyebrow, title, body, primaryCta, secondaryCta, mediaUrl 
             Studio · In Build
           </span>
           <p className="mt-4 font-display text-h4 leading-tight">
-            Three product lines. Everything built in-house.
+            Three titles in development.
           </p>
           <ul className="mt-6 space-y-3 text-xs text-canvas/70">
             <li className="flex items-center justify-between gap-3">
-              <span>Android Games</span>
+              <span>Gully Run</span>
               <span className="rounded-pill bg-canvas/10 px-2 py-0.5">In development</span>
             </li>
             <li className="flex items-center justify-between gap-3">
-              <span>Web3 dApps</span>
+              <span>Treasure Hunter</span>
               <span className="rounded-pill bg-canvas/10 px-2 py-0.5">In development</span>
             </li>
             <li className="flex items-center justify-between gap-3">
-              <span>Consumer Apps</span>
+              <span>Swades</span>
               <span className="rounded-pill bg-coral/20 px-2 py-0.5 text-coral">Coming soon</span>
             </li>
           </ul>
